@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 
 if not os.path.exists('passport'):
     os.makedirs('passport')
-path = os.path.join(os.getcwd(), 'passport', 'passport.txt')
+filename = os.path.join(os.getcwd(), 'passport', 'passport.txt')
 
 driver = webdriver.Firefox()
 driver.get("https://www.gosuslugi.ru/")
@@ -29,7 +29,7 @@ wait.until(EC.invisibility_of_element_located((By.ID, 'start-app-loader')))
 link = wait.until(EC.element_to_be_clickable((By.XPATH, '//span[text()="Документы и данные"]')))
 link.click()
 
-with open(path, 'w') as writer:
+with open(filename, 'w') as writer:
     rows = driver.find_elements_by_css_selector('lk-rf-passport-card#passport section div.content lk-doc-card-row')
     for row in rows:
         try:
